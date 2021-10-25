@@ -1,0 +1,33 @@
+import random
+#list=[]
+
+file=open("student_answers.txt",'w')
+ans_list = ""
+for j in range(0, 5):
+    for i in range(0,60):
+            #ans_list.append(random.randint(1,4))
+            ans_list = ans_list + str(random.randint(1,4))
+    ans_list = ans_list + '\n'
+
+
+file = file.write(ans_list)
+
+file=open("student_answers.txt",'r+')
+
+ans_keys = "231412413131433113323123414112144222323434344242243431123313\n"
+
+ans = file.readline()
+all_student_marks = [0, 0, 0, 0, 0]
+student_count = 0
+while ans:
+    for i in range(len(ans)):
+        if ans[i] != " " and ans[i] != '\n':
+            if ans_keys[i] == ans[i]:
+                all_student_marks[student_count] = all_student_marks[student_count] + 1
+    
+    student_count = student_count + 1
+    ans = file.readline()
+
+print(all_student_marks)
+
+file.close()
