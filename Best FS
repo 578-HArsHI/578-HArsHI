@@ -1,0 +1,55 @@
+from queue import PriorityQueue
+v = 14
+graph = [[] for i in range(v)]
+
+# Function For Implementing Best First Search
+# Gives output path having lowest cost
+
+
+def best_first_search(source, target, n):
+	visited = [0] * n
+	pq = PriorityQueue()
+	pq.put((0, source))
+	while pq.empty() == 0:
+		u = pq.get()[1]
+		visited[u] = 1
+		# Displaying the path having lowest cost
+		print(u, end=" ")
+		if u == target:
+			break
+
+		for v, c in graph[u]:
+			if visited[v] == 0:
+				visited[v] = 1
+				pq.put((c, v))
+	print()
+
+# Function for adding edges to graph
+
+
+def addedge(x, y, cost):
+	graph[x].append((y, cost))
+	graph[y].append((x, cost))
+
+
+# The nodes shown in above example(by alphabets) are
+# implemented using integers addedge(x,y,cost);
+addedge(1, 2, 2)
+addedge(1, 10, 1)
+addedge(2, 3, 3)
+addedge(2, 8, 4)
+addedge(8, 9, 5)
+addedge(3, 4, 6)
+addedge(4, 5, 9)
+addedge(4, 6, 7)
+addedge(4, 7, 8)
+#addedge(8, 10, 6)
+#addedge(9, 11, 1)
+#addedge(9, 12, 10)
+#addedge(9, 13, 2)
+
+source = 1
+target = 5
+best_first_search(source, target, v)
+
+# This code is contributed by Jyotheeswar Ganne
